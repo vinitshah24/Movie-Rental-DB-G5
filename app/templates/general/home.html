@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Welcome to the Home</h1>
+
+<h3> Query 1 </h3>
+<a href="{{ url_for('users.user_details' ) }}">
+    <b>User Details</b>
+</a>
+
+<h3> Query 2 </h3>
+<a href="{{ url_for('rental.movie_details' ) }}">
+    <b>Movie Details</b>
+</a>
+
+<h3> Query 3 </h3>
+<a href="{{ url_for('rental.movie_returned' ) }}">
+    <b>Movie Returned Details</b>
+</a>
+
+{% endblock content %}
