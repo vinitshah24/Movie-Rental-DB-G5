@@ -23,9 +23,6 @@ Run the below query file to setup the database:<br />
 ```
 query.sql
 ```
-
-Create the .env from the .env.sample template:<br />
-
 Run the application:<br />
 ```
 python run.py
