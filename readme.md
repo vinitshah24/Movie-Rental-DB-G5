@@ -6,7 +6,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Python Flask
 Create virtual environment for the application:<br />
 ```
-virtualenv app
+virtualenv .
 ```
  
 Source scripts to activate the virtualenv:<br />
