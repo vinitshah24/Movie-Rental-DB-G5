@@ -4,6 +4,8 @@
 
 <h1>Welcome to the Home</h1>
 
+<h2>{{ session["logged_user"] }}</h2>
+
 <h3> Query 1 </h3>
 <a href="{{ url_for('users.user_details' ) }}">
     <b>User Details</b>
