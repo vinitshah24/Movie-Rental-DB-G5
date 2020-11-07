@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS movie_rental_db;
+DROP DATABASE IF EXISTS movie_rental_db; 
 CREATE DATABASE IF NOT EXISTS movie_rental_db;
 USE movie_rental_db;
 
