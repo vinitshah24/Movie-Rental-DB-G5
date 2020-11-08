@@ -2,31 +2,33 @@
 
 {% block content %}
 
-<h1>Movie Details</h1>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">movie_title</th>
-            <th scope="col">movie_details</th>
-            <th scope="col">actor_first_name</th>
-            <th scope="col">actor_last_name</th>
-            <th scope="col">director_first_name</th>
-            <th scope="col">director_last_name</th>
-            <th scope="col">movie_release_date</th>
-        </tr>
-    </thead>
-    {% for record in resultset %}
-    <tbody>
-        <td>{{ record['movie_title'] }}</td>
-        <td>{{ record['movie_details'] }}</td>
-        <td>{{ record['actor_first_name'] }}</td>
-        <td>{{ record['actor_last_name'] }}</td>
-        <td>{{ record['director_first_name'] }}</td>
-        <td>{{ record['director_last_name'] }}</td>
-        <td>{{ record['movie_release_date'].strftime('%d, %b %Y') }}</td>
-    </tbody>
-    {% endfor %}
-</table>
-
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1>Movie Details</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">movie_title</th>
+                    <th scope="col">movie_details</th>
+                    <th scope="col">actor_first_name</th>
+                    <th scope="col">actor_last_name</th>
+                    <th scope="col">director_first_name</th>
+                    <th scope="col">director_last_name</th>
+                    <th scope="col">movie_release_date</th>
+                </tr>
+            </thead>
+            {% for record in resultset %}
+            <tbody>
+                <td>{{ record['movie_title'] }}</td>
+                <td>{{ record['movie_details'] }}</td>
+                <td>{{ record['actor_first_name'] }}</td>
+                <td>{{ record['actor_last_name'] }}</td>
+                <td>{{ record['director_first_name'] }}</td>
+                <td>{{ record['director_last_name'] }}</td>
+                <td>{{ record['movie_release_date'].strftime('%d, %b %Y') }}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock content %}

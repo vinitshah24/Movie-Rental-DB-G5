@@ -2,23 +2,24 @@
 
 {% block content %}
 
-<h1>Welcome to the Home</h1>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 offset-sm-2 offset-md-2 mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3 class="text-center mb-4">Welcome to Movie Rental App</h3>
 
-<h2>{{ session["logged_user"] }}</h2>
+                    <h2>{{ session["logged_user"] }}</h2>
 
-<h3> Query 1 </h3>
-<a href="{{ url_for('users.user_details' ) }}">
-    <b>User Details</b>
-</a>
-
-<h3> Query 2 </h3>
-<a href="{{ url_for('rental.movie_details' ) }}">
-    <b>Movie Details</b>
-</a>
-
-<h3> Query 3 </h3>
-<a href="{{ url_for('rental.movie_returned' ) }}">
-    <b>Movie Returned Details</b>
-</a>
+                    <a href="{{ url_for('users.user_details' ) }}"><b>User Details</b></a>
+                    <br>
+                    <a href="{{ url_for('rental.movie_details' ) }}"><b>Movie Details</b></a>
+                    <br>
+                    <a href="{{ url_for('rental.movie_returned' ) }}"><b>Movie Returned Details</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

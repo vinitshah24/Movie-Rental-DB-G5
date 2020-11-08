@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1>Movie Returned</h1>
 
-<h1>Movie Returned</h1>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">first_name</th>
-            <th scope="col">last_name</th>
-            <th scope="col">borrowed_date</th>
-            <th scope="col">return_date</th>
-            <th scope="col">due_date</th>
-        </tr>
-    </thead>
-    {% for record in resultset %}
-    <tbody>
-        <td>{{ record['first_name'] }}</td>
-        <td>{{ record['last_name'] }}</td>
-        <td>{{ record['borrowed_date'].strftime('%d, %b %Y') }}</td>
-        <td>{{ record['return_date'].strftime('%d, %b %Y') }}</td>
-        <td>{{ record['due_date'].strftime('%d, %b %Y') }}</td>
-    </tbody>
-    {% endfor %}
-</table>
-
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">first_name</th>
+                    <th scope="col">last_name</th>
+                    <th scope="col">borrowed_date</th>
+                    <th scope="col">return_date</th>
+                    <th scope="col">due_date</th>
+                </tr>
+            </thead>
+            {% for record in resultset %}
+            <tbody>
+                <td>{{ record['first_name'] }}</td>
+                <td>{{ record['last_name'] }}</td>
+                <td>{{ record['borrowed_date'].strftime('%d, %b %Y') }}</td>
+                <td>{{ record['return_date'].strftime('%d, %b %Y') }}</td>
+                <td>{{ record['due_date'].strftime('%d, %b %Y') }}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock content %}
