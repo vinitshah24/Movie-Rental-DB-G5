@@ -38,8 +38,9 @@ def movie_returned():
                            title='Movies Returned',
                            resultset=data)
 
-@rental.route("/deleteMovie", methods=['GET', 'POST'])
-def deleteMovie():
+
+@rental.route("/delete_movie", methods=['GET', 'POST'])
+def delete_movie():
     form = DeleteMovieForm()
     if form.validate_on_submit():
         movie_id = form.movie_id.data
@@ -55,8 +56,9 @@ def deleteMovie():
         conn.commit()
     return render_template('rental/delete_movie.html', form=form)
 
-@rental.route("/addMovie", methods=['GET', 'POST'])
-def addMovie():
+
+@rental.route("/add_movie", methods=['GET', 'POST'])
+def add_movie():
     form = AddMovieForm()
     if form.validate_on_submit():
         movie_title = form.movie_title.data
@@ -67,22 +69,24 @@ def addMovie():
         print(movie_details)
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(INSERT_MOVIE, (movie_title, movie_release_date, movie_details));
+        cursor.execute(INSERT_MOVIE, (movie_title, movie_release_date, movie_details))
         conn.commit()
-    return render_template('rental/add_Movie.html', form=form)
+    return render_template('rental/add_movie.html', form=form)
 
-@rental.route('/filter_movies')
+
+@rental.route('/filter_movies', methods=['GET', 'POST'])
 def filter_movies():
     form = FilterForm()
     if form.validate_on_submit():
-        filter_text = form.filter_text.data
-        print(filter_text)
+        movie_name = form.filter_text.data
+        print(movie_name)
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(queries.SELECT_MOVIE_RETURNED_DETAILS)
+        cursor.execute(queries.SELECT_FILTER_MOVIE_DETAILS, movie_name)
         data = cursor.fetchall()
         cursor.close()
         conn.close()
-    #print(data)
+        print(data)
+        return render_template('rental/filtered_movie.html', resultset=data)
     return render_template('rental/filter_movies.html',
                            title='Filter Movies', form=form)

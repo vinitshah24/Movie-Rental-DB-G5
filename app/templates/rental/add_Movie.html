@@ -2,23 +2,31 @@
 
 <div class="container mt-5 mb-5">
   <div class="row">
-    <h1>Add Movie</h1>
-    <form method="POST">
-      {{ form.hidden_tag() }}
-      <div class="form-group">
-        <label>Movie Title</label>
-        {{ form.movie_title }}
+    <div class="col-md-8 col-sm-8 offset-sm-2 offset-md-2 mt-4 mb-4">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <h3 class="text-center mb-4">Add Movie</h3>
+          <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              <label>Movie Title</label>
+              {{ form.movie_title }}
+            </div>
+            <div class="form-group">
+              <label>Movie Release Date</label>
+              {{ form.movie_release_date }}
+            </div>
+            <div class="form-group">
+              <label>Movie Details</label>
+              {{ form.movie_details }}
+            </div>
+            <div class="form-group">
+              {{ form.submit(class="btn btn-primary") }}
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Movie Release Date</label>
-        {{ form.movie_release_date }}
-      </div>
-      <div class="form-group">
-        <label>Movie Details</label>
-        {{ form.movie_details }}
-      </div>
-      <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
-    </form>
+    </div>
   </div>
 </div>
 {% endblock content %}

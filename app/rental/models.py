@@ -50,27 +50,50 @@ WHERE r.return_date = "2020-07-10";
            movie_table=MOVIE_TABLE,
            rental_table=RENTAL_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIEACTOR = """DELETE FROM {database}.{movie_actor_table} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-movie_actor_table=MOVIE_ACTOR_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIEACTOR = """
+DELETE FROM {database}.{movie_actor_table} 
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           movie_actor_table=MOVIE_ACTOR_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIEDIRECTOR = """DELETE FROM {database}.{movie_director_table} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-movie_director_table=MOVIE_DIRECTOR_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIEDIRECTOR = """
+DELETE FROM {database}.{movie_director_table}
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           movie_director_table=MOVIE_DIRECTOR_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIEGENRE = """DELETE FROM {database}.{movie_genre_table} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-movie_genre_table=MOVIE_GENRE_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIEGENRE = """
+DELETE FROM {database}.{movie_genre_table} 
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           movie_genre_table=MOVIE_GENRE_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIERATINGS = """DELETE FROM {database}.{movie_ratings_table} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-movie_ratings_table=MOVIE_RATINGS_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIERATINGS = """
+DELETE FROM {database}.{movie_ratings_table} 
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           movie_ratings_table=MOVIE_RATINGS_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIERENTAL = """DELETE FROM {database}.{rental_table} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-rental_table=RENTAL_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIERENTAL = """
+DELETE FROM {database}.{rental_table} 
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           rental_table=RENTAL_TABLE).replace('\n', ' ')
 
-SELECT_DELETEMOVIE = """DELETE FROM {database}.{movie} WHERE movie_id = %s""".format(database=MYSQL_DATABASE_DB,
-movie=MOVIE_TABLE).replace('\n', ' ')
+SELECT_DELETEMOVIE = """
+DELETE FROM {database}.{movie} 
+WHERE movie_id = %s
+""".format(database=MYSQL_DATABASE_DB, movie=MOVIE_TABLE).replace('\n', ' ')
 
-INSERT_MOVIE = """INSERT INTO {database}.{movie} (movie_title, movie_release_date, movie_details) VALUES (%s, %s, %s)""".format(database=MYSQL_DATABASE_DB,
-movie=MOVIE_TABLE).replace('\n', ' ')
+INSERT_MOVIE = """
+INSERT INTO {database}.{movie} 
+(movie_title, movie_release_date, movie_details) 
+VALUES (%s, %s, %s)
+""".format(database=MYSQL_DATABASE_DB, movie=MOVIE_TABLE).replace('\n', ' ')
 
-SELECT_FILTER_MOVIES = """SELECT * FROM {database}.{movie_table} WHERE movie_title =  %s)
+SELECT_FILTER_MOVIE_DETAILS = """
+SELECT m.movie_title, m.movie_release_date, m.movie_details
+FROM {database}.{movie_table} m
+WHERE movie_title = %s
 """.format(database=MYSQL_DATABASE_DB,
            movie_table=MOVIE_TABLE).replace('\n', ' ')

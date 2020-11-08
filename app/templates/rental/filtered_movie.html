@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.filter_text}}
-    {{ form.submit}}
-</form>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">movie_title</th>
+                    <th scope="col">movie_release_date</th>
+                    <th scope="col">movie_details</th>
+                </tr>
+            </thead>
+            {% for record in resultset %}
+            <tbody>
+                <td>{{ record['movie_title'] }}</td>
+                <td>{{ record['movie_release_date'].strftime('%d, %b %Y') }}</td>
+                <td>{{ record['movie_details'] }}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock content %}

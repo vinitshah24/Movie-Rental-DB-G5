@@ -70,7 +70,6 @@ def login():
     return render_template('users/login.html', title='Login', form=form)
 
 
-
 @users.route("/logout", methods=['GET'])
 def logout():
     session.clear()
