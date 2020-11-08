@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, DateField
+from wtforms.fields.core import IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_admin.form import DateTimeField, DatePickerWidget, DateTimePickerWidget
 

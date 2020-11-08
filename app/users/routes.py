@@ -1,4 +1,3 @@
-
 import pymysql
 from datetime import datetime
 from flask import (render_template, Blueprint, flash, redirect, url_for,
@@ -69,6 +68,7 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('general.home'))
     return render_template('users/login.html', title='Login', form=form)
+
 
 
 @users.route("/logout", methods=['GET'])

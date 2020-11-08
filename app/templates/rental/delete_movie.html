@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1>Delete Movie</h1>
+         <form method="POST">
+             {{ form.hidden_tag() }}
+             <div class="form-group">
+                 {{ form.movie_id }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+         </form>
+    </div>
+</div>
+{% endblock content %}
