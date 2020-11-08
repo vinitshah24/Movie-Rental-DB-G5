@@ -6,7 +6,7 @@ from werkzeug.utils import redirect
 
 from app.db import mysql
 import app.rental.models as queries
-from app.rental.forms import AddMovieForm, DeleteMovieForm
+from app.rental.forms import AddMovieForm, DeleteMovieForm, FilterForm
 from app.rental.models import INSERT_MOVIE
 rental = Blueprint('rental', __name__)
 
@@ -70,3 +70,19 @@ def addMovie():
         cursor.execute(INSERT_MOVIE, (movie_title, movie_release_date, movie_details));
         conn.commit()
     return render_template('rental/add_Movie.html', form=form)
+
+@rental.route('/filter_movies')
+def filter_movies():
+    form = FilterForm()
+    if form.validate_on_submit():
+        filter_text = form.filter_text.data
+        print(filter_text)
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(queries.SELECT_MOVIE_RETURNED_DETAILS)
+        data = cursor.fetchall()
+        cursor.close()
+        conn.close()
+    #print(data)
+    return render_template('rental/filter_movies.html',
+                           title='Filter Movies', form=form)

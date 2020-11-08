@@ -14,3 +14,9 @@ class AddMovieForm(FlaskForm):
     movie_release_date = DateField('DatePicker', format='%Y-%m-%d', render_kw={'type': 'date'})
     movie_details = StringField('Movie Details')
     submit = SubmitField('Add Movie!')
+
+class FilterForm(FlaskForm):
+    filter_text = StringField('Username',
+                             validators=[DataRequired(), Length(min=2, max=20)],
+                            render_kw={'placeholder': 'Filter Text'})
+    submit = SubmitField('Submit')

@@ -70,3 +70,7 @@ movie=MOVIE_TABLE).replace('\n', ' ')
 
 INSERT_MOVIE = """INSERT INTO {database}.{movie} (movie_title, movie_release_date, movie_details) VALUES (%s, %s, %s)""".format(database=MYSQL_DATABASE_DB,
 movie=MOVIE_TABLE).replace('\n', ' ')
+
+SELECT_FILTER_MOVIES = """SELECT * FROM {database}.{movie_table} WHERE movie_title =  %s)
+""".format(database=MYSQL_DATABASE_DB,
+           movie_table=MOVIE_TABLE).replace('\n', ' ')
