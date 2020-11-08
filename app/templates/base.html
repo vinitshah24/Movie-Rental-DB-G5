@@ -34,6 +34,7 @@
             {% if session.get("logged_user") %}
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{ url_for('general.home') }}">Home</a>
+                <a class="nav-item nav-link active" href="{{ url_for('users.logout') }}">Logout</a>
                 <a class="nav-item nav-link" href="{{ url_for('rental.delete_movie') }}">Delete Movie</a>
                 <a class="nav-item nav-link" href="{{ url_for('rental.add_movie') }}">Add Movie</a>
                 <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Filter Movies</a>
@@ -43,8 +44,6 @@
                 <a class="nav-item nav-link active" href="{{ url_for('general.home') }}">Home</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Signup</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.delete_movie') }}">Delete Movie</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.add_movie') }}">Add Movie</a>
                 <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Filter Movies</a>
             </div>
         </div>
