@@ -8,17 +8,47 @@
           <h3 class="text-center mb-4">Add Movie</h3>
           <form method="POST">
             {{ form.hidden_tag() }}
+
             <div class="form-group">
+              {% if form.movie_title.errors %}
+              {{ form.movie_title(class="form-control is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.movie_title.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+              {% else %}
               <label>Movie Title</label>
-              {{ form.movie_title }}
+              {{ form.movie_title(class="form-control") }}
+              {% endif %}
             </div>
+
             <div class="form-group">
-              <label>Movie Release Date</label>
-              {{ form.movie_release_date }}
+              {% if form.movie_release_date.errors %}
+              {{ form.movie_release_date(class="form-control is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.movie_release_date.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+              {% else %}
+              <label>Release Date</label>
+              {{ form.movie_release_date(class="form-control") }}
+              {% endif %}
             </div>
+
             <div class="form-group">
-              <label>Movie Details</label>
-              {{ form.movie_details }}
+              {% if form.movie_details.errors %}
+              {{ form.movie_details(class="form-control is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.movie_details.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+              {% else %}
+              <label>Movie Summary</label>
+              {{ form.movie_details(class="form-control form-control") }}
+              {% endif %}
             </div>
             <div class="form-group">
               {{ form.submit(class="btn btn-primary") }}

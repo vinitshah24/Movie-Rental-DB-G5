@@ -8,7 +8,10 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <h3 class="text-center mb-4">Welcome to Movie Rental App</h3>
-
+                    <div class="text-center">
+                        <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbz-classic-movies-00-index-new-1591823486.jpg"
+                            class="img-fluid rounded" width=400 alt="Movies">
+                    </div>
                     <h2>{{ session["logged_user"] }}</h2>
 
                     <a href="{{ url_for('users.user_details' ) }}"><b>User Details</b></a>

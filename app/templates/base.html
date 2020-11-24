@@ -24,46 +24,53 @@
 </head>
 
 <body class="main">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('general.home') }}">Movie Rental App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            {% if session.get("logged_user") %}
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{{ url_for('general.home') }}">Home</a>
-                <a class="nav-item nav-link active" href="{{ url_for('users.logout') }}">Logout</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.delete_movie') }}">Delete Movie</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.add_movie') }}">Add Movie</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Filter Movies</a>
-            </div>
-            {% else %}
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{{ url_for('general.home') }}">Home</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Signup</a>
-                <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Filter Movies</a>
-            </div>
-        </div>
-        {% endif %}
-    </nav>
-
-    <main class="main-content">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ url_for('general.home') }}">Movie Rental App</a>
+            <button class="navbar-toggler" type="button" 
+            data-toggle="collapse" data-target="#navbarNavAltMarkup">
+                <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                {% if session.get("logged_user") %}
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{{ url_for('general.home') }}">Home</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.delete_movie') }}">Delete Movie</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.add_movie') }}">Add Movie</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Find Movies</a>
+                </div>
+                {% else %}
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{{ url_for('general.home') }}">Home</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Signup</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Find Movies</a>
+                </div>
+            </div>
+            {% endif %}
+        </nav>
 
-        {% block content %} {% endblock %}
-    </main>
+        <main class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </main>
+    </div>
+    <footer class="footer pt-4 pb-1 bg-dark text-white">
+        <div class="container text-center">
+            <p>&copy; Movie Rental App</p>
+        </div>
+    </footer>
 </body>

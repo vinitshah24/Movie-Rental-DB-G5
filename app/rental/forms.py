@@ -7,16 +7,18 @@ from flask_admin.form import DateTimeField, DatePickerWidget, DateTimePickerWidg
 
 class DeleteMovieForm(FlaskForm):
     movie_id = IntegerField('Movie ID')
-    submit = SubmitField('Delete Movie!')
+    submit = SubmitField('Delete Movie')
+
 
 class AddMovieForm(FlaskForm):
     movie_title = StringField('Movie Title')
     movie_release_date = DateField('DatePicker', format='%Y-%m-%d', render_kw={'type': 'date'})
     movie_details = StringField('Movie Details')
-    submit = SubmitField('Add Movie!')
+    submit = SubmitField('Add Movie')
+
 
 class FilterForm(FlaskForm):
     filter_text = StringField('Username',
-                             validators=[DataRequired(), Length(min=2, max=20)],
-                            render_kw={'placeholder': 'Filter Text'})
+                              validators=[DataRequired(), Length(min=2, max=20)],
+                              render_kw={'placeholder': 'Movie Name'})
     submit = SubmitField('Submit')

@@ -6,7 +6,7 @@
         <div class="col-md-8 col-sm-8 offset-sm-2 offset-md-2 mt-4 mb-4">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h3 class="text-center mb-4">Filter Movies by Movie Name</h3>
+                    <h3 class="text-center mb-4">Find Your Favourite Movies</h3>
 
                     <form method="POST">
                         {{ form.hidden_tag() }}
@@ -20,12 +20,12 @@
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ form.filter_text(class="form-control form-control-lg") }}
+                            {{ form.filter_text(class="form-control") }}
                             {% endif %}
                         </div>
 
                         <div class="form-group">
-                            {{ form.submit(class="btn btn-primary btn-lg btn-block") }}
+                            {{ form.submit(class="btn btn-primary") }}
                         </div>
                     </form>
                 </div>
