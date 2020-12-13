@@ -12,7 +12,7 @@ RATINGS_TABLE = "ratings"
 MOVIE_RATINGS_TABLE = "movie_ratings"
 RENTAL_TABLE = "rental"
 
-SELECT_MOVIE_DETAILS = """SELECT m.movie_title, m.movie_release_date, m.movie_details,
+SELECT_MOVIE_DETAILS = """SELECT m.movie_id, m.movie_title, m.movie_release_date, m.movie_details,
 a.actor_first_name, a.actor_last_name,
 d.director_first_name, d.director_last_name
 FROM {database}.{movie_table} m
@@ -94,6 +94,19 @@ VALUES (%s, %s, %s)
 SELECT_FILTER_MOVIE_DETAILS = """
 SELECT m.movie_title, m.movie_release_date, m.movie_details
 FROM {database}.{movie_table} m
-WHERE movie_title = %s
+WHERE movie_title LIKE %s
 """.format(database=MYSQL_DATABASE_DB,
            movie_table=MOVIE_TABLE).replace('\n', ' ')
+
+SELECT_USER_RENTABLES="""
+SELECT * 
+FROM {database}.{movie_table}
+WHERE movie.movie_id NOT IN (
+    SELECT m.movie_id
+    FROM {database}.{movie_table} m
+    JOIN {database}.{rental_table} r 
+    ON m.movie_id = r.movie_id
+    WHERE user_id = %s)
+""".format(database=MYSQL_DATABASE_DB,
+           movie_table=MOVIE_TABLE,
+           rental_table=RENTAL_TABLE).replace('\n', ' ')

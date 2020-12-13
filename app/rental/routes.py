@@ -20,7 +20,6 @@ def movie_details():
     data = cursor.fetchall()
     cursor.close()
     conn.close()
-    print(data)
     return render_template('rental/movie_details.html',
                            title='Movie Details',
                            resultset=data)
@@ -34,7 +33,6 @@ def movie_returned():
     data = cursor.fetchall()
     cursor.close()
     conn.close()
-    print(data)
     return render_template('admin/movies_returned.html',
                            title='Movies Returned',
                            resultset=data)
@@ -45,7 +43,6 @@ def delete_movie():
     form = DeleteMovieForm()
     if form.validate_on_submit():
         movie_id = form.movie_id.data
-        print(movie_id)
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(queries.SELECT_DELETEMOVIEACTOR, (movie_id))
@@ -65,9 +62,6 @@ def add_movie():
         movie_title = form.movie_title.data
         movie_release_date = form.movie_release_date.data
         movie_details = form.movie_details.data
-        print(movie_title)
-        print(movie_release_date)
-        print(movie_details)
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute(INSERT_MOVIE, (movie_title, movie_release_date, movie_details))
@@ -80,14 +74,54 @@ def filter_movies():
     form = FilterForm()
     if form.validate_on_submit():
         movie_name = form.filter_text.data
-        print(movie_name)
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(queries.SELECT_FILTER_MOVIE_DETAILS, movie_name)
+        cursor.execute(queries.SELECT_FILTER_MOVIE_DETAILS, f"%{movie_name}%")
         data = cursor.fetchall()
         cursor.close()
         conn.close()
-        print(data)
         return render_template('rental/filtered_movie.html', resultset=data)
     return render_template('rental/filter_movies.html',
                            title='Filter Movies', form=form)
+
+
+@rental.route('/rent', methods=['GET', 'POST'])
+def rent_movie_list():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute(queries.SELECT_USER_RENTABLES, session["logged_user_id"] )
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('rental/rent.html',
+                           title='Rent Movie',
+                           resultset=data)
+
+
+@rental.route('/rent/<string:movie_id>', methods=['GET', 'POST'])
+def rent_movie(movie_id):
+    if movie_id is None:
+        return redirect(url_for('rental.rent_movie_list'))
+    else:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(queries.SELECT_MOVIE_DETAILS)
+        data = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        flash('Movie rented successfully!', 'success')
+        return render_template('rental/rent.html',
+                               title='Rent Movie',
+                               resultset=data)
+
+@rental.route('/myrentals', methods=['GET', 'POST'])
+def user_rentals():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute(queries.SELECT_MOVIE_DETAILS)
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('rental/user_rentals.html',
+                            title='Rented Movies',
+                            resultset=data)

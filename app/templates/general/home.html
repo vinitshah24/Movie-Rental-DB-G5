@@ -13,6 +13,7 @@
                             class="img-fluid rounded" width=400 alt="Movies">
                     </div>
                     <h2>{{ session["logged_user"] }}</h2>
+                    <h2>{{ session["logged_user_id"] }}</h2>
 
                     <a href="{{ url_for('users.user_details' ) }}"><b>User Details</b></a>
                     <br>

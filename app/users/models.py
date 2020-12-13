@@ -20,7 +20,26 @@ VALUES (%s, MD5(CONCAT(%s,'secret02')), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
 """.format(database=MYSQL_DATABASE_DB,
            person_table=PERSON_TABLE).replace('\n', ' ')
 
+INSERT_USER = """INSERT INTO {database}.{user_table} (person_id) VALUES (%s)
+""".format(database=MYSQL_DATABASE_DB,
+           user_table=USER_TABLE).replace('\n', ' ')
+
 SELECT_LOGIN = """SELECT COUNT(*) > 0 AS output FROM {database}.{person_table}
 WHERE username = %s AND user_pass = MD5(CONCAT(%s,'secret02'))
+""".format(database=MYSQL_DATABASE_DB,
+           person_table=PERSON_TABLE).replace('\n', ' ')
+
+SELECT_USER_ID = """SELECT u.user_id 
+FROM {database}.{user_table} u
+JOIN {database}.{person_table} p
+ON p.person_id = u.person_id
+WHERE p.username = %s
+""".format(database=MYSQL_DATABASE_DB,
+           user_table=USER_TABLE,
+           person_table=PERSON_TABLE).replace('\n', ' ')
+
+SELECT_PERSON_ID = """SELECT p.person_id
+FROM {database}.{person_table} p
+WHERE p.username = %s
 """.format(database=MYSQL_DATABASE_DB,
            person_table=PERSON_TABLE).replace('\n', ' ')

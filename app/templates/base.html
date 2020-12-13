@@ -39,6 +39,8 @@
                     <a class="nav-item nav-link" href="{{ url_for('rental.delete_movie') }}">Delete Movie</a>
                     <a class="nav-item nav-link" href="{{ url_for('rental.add_movie') }}">Add Movie</a>
                     <a class="nav-item nav-link" href="{{ url_for('rental.filter_movies') }}">Find Movies</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.rent_movie_list') }}">Rent</a>
+                    <a class="nav-item nav-link" href="{{ url_for('rental.user_rentals') }}">My Rentals</a>
                 </div>
                 {% else %}
                 <div class="navbar-nav">

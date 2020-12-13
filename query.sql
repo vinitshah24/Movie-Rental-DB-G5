@@ -1,3 +1,4 @@
+USE movie_rental_db;
 DROP DATABASE IF EXISTS movie_rental_db; 
 CREATE DATABASE IF NOT EXISTS movie_rental_db;
 USE movie_rental_db;
@@ -33,13 +34,15 @@ VALUES
 'Charlotte','NC', 35324,'115-248-0018','tay@gmail.com','2019-09-12');
 
 CREATE TABLE user(
-user_id INT PRIMARY KEY NOT NULL,
+user_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 person_id INT,
 FOREIGN KEY (person_id) REFERENCES person(person_id)
 );
+ 
+ALTER TABLE user AUTO_INCREMENT = 100;
 
-INSERT INTO user (user_id, person_id) 
-VALUES (101,1), (102,2), (103,3);
+INSERT INTO user (person_id) 
+VALUES (1), (2), (3);
 
 CREATE TABLE admin (
 admin_id  INT PRIMARY KEY NOT NULL,
@@ -168,12 +171,25 @@ FOREIGN KEY (user_id) REFERENCES user(user_id),
 movie_id INT,
 FOREIGN KEY (movie_id) REFERENCES movie(movie_id),
 borrowed_date DATE NOT NULL,
-return_date DATE NULL,
 due_date DATE NOT NULL
 );
 
-INSERT INTO rental (user_id, movie_id, borrowed_date, return_date, due_date) 
+INSERT INTO rental (user_id, movie_id, borrowed_date, due_date) 
 VALUES
-(101, 1, '2019-06-10', '2019-06-10', '2020-06-12'),
-(102, 2, '2020-05-11', '2020-07-06', '2020-07-16'),
-(103, 3, '2020-03-09', '2020-07-10', '2020-07-10');
+(100, 1, '2019-06-10', '2020-06-12'),
+(101, 2, '2020-05-11', '2020-07-16'),
+(102, 3, '2020-03-09', '2020-07-10');
+
+
+INSERT INTO rental (user_id, movie_id, borrowed_date, due_date) 
+VALUES
+(101, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 1 MONTH));
+
+SELECT * 
+    FROM movie
+    WHERE movie.movie_id NOT IN (
+        SELECT m.movie_id
+        FROM movie m
+        JOIN rental r 
+        ON m.movie_id = r.movie_id
+        WHERE user_id = 101 )

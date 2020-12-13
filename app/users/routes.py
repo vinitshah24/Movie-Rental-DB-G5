@@ -40,9 +40,19 @@ def signup():
         cursor.execute(queries.INSERT_PERSON, (
             username, user_pass, first_name, last_name, birthdate, street,
             city, state, zipcode, phone, email, date_joined))
-        # TODO: Select userID, Insert USER (general/premium)
-        # TODO: Verify the user record before showing success message
         conn.commit()
+
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute(queries.SELECT_PERSON_ID, username)
+        person_id = cursor.fetchone()
+        print(f"Person ID: {person_id}")
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute(queries.INSERT_USER, int(person_id["person_id"]))
+        conn.commit()        
+        
         flash('Account created successfully!', 'success')
         return redirect(url_for('users.login'))
     return render_template('users/signup.html', title='Signup', form=form)
@@ -63,7 +73,13 @@ def login():
             flash('Login Unsuccessful. Check Username and Password!', 'danger')
             return redirect(url_for('users.login'))
         else:
-            # TODO: GET THE USER ID FOR USER SESSION
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(queries.SELECT_USER_ID, username)
+            user_id = cursor.fetchone()
+            print(f"USER ID: {user_id}")
+
+            session["logged_user_id"] = user_id["user_id"]
             session["logged_user"] = username
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('general.home'))

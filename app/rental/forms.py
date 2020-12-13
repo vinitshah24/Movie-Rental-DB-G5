@@ -19,6 +19,6 @@ class AddMovieForm(FlaskForm):
 
 class FilterForm(FlaskForm):
     filter_text = StringField('Username',
-                              validators=[DataRequired(), Length(min=2, max=20)],
+                              validators=[DataRequired()],
                               render_kw={'placeholder': 'Movie Name'})
     submit = SubmitField('Submit')

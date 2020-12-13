@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1>Available Rentals</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col"></th>
+                    </tr>
+            </thead>
+            {% for record in resultset %}
+            <tbody>
+                <td>{{ record['movie_title'] }}</td>
+                <td>{{ record['movie_release_date'].strftime('%d, %b %Y') }}</td>
+                <td>
+                    <a type="submit" class="btn btn-primary btn-sm" href="/rent/{{ record["movie_id"] }}">
+                    Rent
+                    </a>
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+{% endblock content %}
