@@ -35,7 +35,7 @@ ORDER BY m.movie_title DESC
 
 SELECT_MOVIE_RETURNED_DETAILS = """
 SELECT p.first_name, p.last_name, m.movie_title,
-r.borrowed_date, r.return_date, r.due_date
+r.borrowed_date, r.due_date
 FROM {database}.{user_table} u
 JOIN {database}.{rental_table} r
 ON u.user_id = r.user_id
@@ -43,7 +43,6 @@ JOIN {database}.{person_table} p
 ON u.person_id = p.person_id
 JOIN {database}.{movie_table} m
 ON r.movie_id = m.movie_id
-WHERE r.return_date = "2020-07-10";
 """.format(database=MYSQL_DATABASE_DB,
            user_table=USER_TABLE,
            person_table=PERSON_TABLE,
