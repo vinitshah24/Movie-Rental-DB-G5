@@ -110,3 +110,23 @@ WHERE movie.movie_id NOT IN (
 """.format(database=MYSQL_DATABASE_DB,
            movie_table=MOVIE_TABLE,
            rental_table=RENTAL_TABLE).replace('\n', ' ')
+
+INSERT_MOVIE_RENT = """
+INSERT INTO {database}.{rental_table} (user_id, movie_id, borrowed_date, due_date) 
+VALUES
+(%s, %s, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 1 MONTH));
+""".format(database=MYSQL_DATABASE_DB,
+           rental_table=RENTAL_TABLE).replace('\n', ' ')
+
+SELECT_USER_RENTED_MOVIES = """
+SELECT m.movie_title, r.borrowed_date, r.due_date
+FROM {database}.{user_table} u
+JOIN {database}.{rental_table} r
+ON  u.user_id = r.user_id
+JOIN {database}.{movie_table} m
+ON m.movie_id = r.movie_id
+WHERE r.user_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           rental_table=RENTAL_TABLE,
+           movie_table=MOVIE_TABLE,
+           user_table=USER_TABLE,).replace('\n', ' ')

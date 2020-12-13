@@ -105,20 +105,16 @@ def rent_movie(movie_id):
     else:
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(queries.SELECT_MOVIE_DETAILS)
-        data = cursor.fetchall()
-        cursor.close()
-        conn.close()
+        cursor.execute(queries.INSERT_MOVIE_RENT, (session["logged_user_id"], movie_id))
+        conn.commit()
         flash('Movie rented successfully!', 'success')
-        return render_template('rental/rent.html',
-                               title='Rent Movie',
-                               resultset=data)
+        return redirect(url_for('rental.user_rentals'))
 
 @rental.route('/myrentals', methods=['GET', 'POST'])
 def user_rentals():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-    cursor.execute(queries.SELECT_MOVIE_DETAILS)
+    cursor.execute(queries.SELECT_USER_RENTED_MOVIES, session["logged_user_id"])
     data = cursor.fetchall()
     cursor.close()
     conn.close()
