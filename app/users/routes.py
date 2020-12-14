@@ -78,9 +78,21 @@ def login():
             cursor.execute(queries.SELECT_USER_ID, username)
             user_id = cursor.fetchone()
             print(f"USER ID: {user_id}")
+            session["is_admin"] = False
 
-            session["logged_user_id"] = user_id["user_id"]
-            session["logged_user"] = username
+            try:
+                if user_id["user_id"] is not None:
+                    session["logged_user_id"] = user_id["user_id"]
+            except Exception as e:
+                print(f"Could not set logged_user_id session value: {e}")   
+                session["is_admin"] = True
+
+            try:
+                if username is not None:
+                    session["logged_user"] = username
+            except Exception as e:
+                print(f"Could not set logged_user session value: {e}")
+
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('general.home'))
     return render_template('users/login.html', title='Login', form=form)
