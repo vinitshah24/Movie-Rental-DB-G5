@@ -97,7 +97,7 @@ WHERE movie_title LIKE %s
 """.format(database=MYSQL_DATABASE_DB,
            movie_table=MOVIE_TABLE).replace('\n', ' ')
 
-SELECT_USER_RENTABLES="""
+SELECT_USER_RENTABLES = """
 SELECT * 
 FROM {database}.{movie_table}
 WHERE movie.movie_id NOT IN (
@@ -129,3 +129,12 @@ WHERE r.user_id = %s
            rental_table=RENTAL_TABLE,
            movie_table=MOVIE_TABLE,
            user_table=USER_TABLE,).replace('\n', ' ')
+
+SELECT_USER_RENTAL_HISTORY = """
+SELECT m.movie_title, r.borrowed_date 
+FROM {database}.{rental_table} r 
+JOIN {database}.{movie_table} m 
+ON m.movie_id = r.movie_id 
+where user_id = %s and DATE(r.due_date) < CURDATE()""".format(database=MYSQL_DATABASE_DB,
+           rental_table=RENTAL_TABLE,
+           movie_table=MOVIE_TABLE,).replace('\n', ' ')

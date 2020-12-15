@@ -429,3 +429,4 @@ SELECT *
         JOIN rental r 
         ON m.movie_id = r.movie_id
         WHERE user_id = 101 )
+
