@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1>Your Rentals</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">movie_title</th>
+                    <th scope="col">borrowed_date</th>
+                </tr>
+            </thead>
+            {% for record in resultset %}
+            <tbody>
+                <td>{{ record['movie_title'] }}</td>
+                <td>{{ record['borrowed_date'].strftime('%d, %b %Y') }}</td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}

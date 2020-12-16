@@ -121,3 +121,15 @@ def user_rentals():
     return render_template('rental/user_rentals.html',
                             title='Rented Movies',
                             resultset=data)
+
+@rental.route('/user_rental_history', methods=['GET', 'POST'])
+def user_rental_history():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute(queries.SELECT_USER_RENTAL_HISTORY, session["logged_user_id"])
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('rental/user_rental_history.html',
+                            title='User Movie Rental',
+                            resultset=data)
