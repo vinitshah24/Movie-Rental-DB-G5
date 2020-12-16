@@ -3,8 +3,8 @@ DROP DATABASE IF EXISTS movie_rental_db;
 CREATE DATABASE IF NOT EXISTS movie_rental_db;
 USE movie_rental_db;
 
-CREATE TABLE person(
-person_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE persON(
+persON_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 username VARCHAR(60) NOT NULL UNIQUE,
 user_pass VARCHAR(50) NOT NULL,
 first_name VARCHAR(80) NOT NULL,
@@ -14,43 +14,43 @@ street VARCHAR(100) NOT NULL,
 city VARCHAR(65)NOT NULL,
 state VARCHAR(50)NOT NULL,
 zip INT,
-phone VARCHAR(16) NOT NULL,
+phONe VARCHAR(16) NOT NULL,
 email  VARCHAR(70) NOT NULL,
 data_joined DATE NOT NULL
 );
 
-INSERT INTO person (username, user_pass, first_name, last_name, birthdate, street, city, 
-state, zip, phone, email, data_joined) 
+INSERT INTO persON (username, user_pass, first_name, last_name, birthdate, street, city, 
+state, zip, phONe, email, data_joined) 
 VALUES 
 ('user1', MD5(CONCAT("user1pass","secret02")),'Tom','Curran','1993-10-02','North Blvd',
 'Charlotte', 'NC', 28242,'769-888-9898','tom.curran@gmail.com','2019-11-08'),
 ('user2', MD5(CONCAT("user2pass","secret02")),'Sam','Smth','1992-11-06','City Blvd',
 'Charlotte','NC', 28242,'539-328-9898','sam@gmail.com','2019-12-09'),
-('user3', MD5(CONCAT("user3pass","secret02")),'Jake','Jackson','1993-12-04','East Blvd',
+('user3', MD5(CONCAT("user3pass","secret02")),'Jake','JacksON','1993-12-04','East Blvd',
 'Charlotte','NC', 23462,'935-248-9898','jake@gmail.com','2019-07-10'),
-('user4', MD5(CONCAT("user4pass","secret02")),'Logan','Jackson','1992-06-04','West Blvd',
+('user4', MD5(CONCAT("user4pass","secret02")),'Logan','JacksON','1992-06-04','West Blvd',
 'Charlotte','NC', 24521,'245-248-9898','logan@gmail.com','2019-08-11'),
-('user5', MD5(CONCAT("user5pass","secret02")),'Tay','Jackson','1998-08-04','South Blvd',
+('user5', MD5(CONCAT("user5pass","secret02")),'Tay','JacksON','1998-08-04','South Blvd',
 'Charlotte','NC', 35324,'115-248-0018','tay@gmail.com','2019-09-12');
 
 CREATE TABLE user(
 user_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-person_id INT,
-FOREIGN KEY (person_id) REFERENCES person(person_id)
+persON_id INT,
+FOREIGN KEY (persON_id) REFERENCES persON(persON_id)
 );
  
 ALTER TABLE user AUTO_INCREMENT = 100;
 
-INSERT INTO user (person_id) 
+INSERT INTO user (persON_id) 
 VALUES (1), (2), (3);
 
 CREATE TABLE admin (
 admin_id  INT PRIMARY KEY NOT NULL,
-person_id INT,
-FOREIGN KEY (person_id) REFERENCES person(person_id)
+persON_id INT,
+FOREIGN KEY (persON_id) REFERENCES persON(persON_id)
 );
 
-INSERT INTO admin (admin_id,person_id) 
+INSERT INTO admin (admin_id,persON_id) 
 VALUES (201,4), (202, 5);
 
 CREATE TABLE genre (
@@ -60,24 +60,24 @@ genre_name VARCHAR(30) NOT NULL
 
 INSERT INTO genre (genre_name) 
 VALUES
-("Action"), 
+("ActiON"), 
 ("Adventure"), 
 ("Comedy"), 
 ("Crime"), 
 ("Drama"), 
 ("Fantasy"), 
 ("Historical"), 
-("Historical fiction"), 
+("Historical fictiON"), 
 ("Horror"), 
 ("Magical realism"), 
 ("Mystery"), 
-("Paranoid fiction"), 
+("Paranoid fictiON"), 
 ("Philosophical"), 
 ("Political"), 
 ("Romance"), 
 ("Saga"), 
 ("Satire"), 
-("Science fiction"), 
+("Science fictiON"), 
 ("Social"), 
 ("Speculative"), 
 ("Thriller"), 
@@ -95,52 +95,52 @@ INSERT INTO movie (movie_title, movie_release_date, movie_details)
 VALUES 
 ("Bad Girls Go To Hell", "2015-03-29", "augue a suscipit nulla elit"),
 ("Herr Lehmann", "2020-01-27", "vel lectus in quam fringilla"),
-("Puff, Puff, Pass", "2020-07-27", "convallis nulla neque libero convallis"),
+("Puff, Puff, Pass", "2020-07-27", "cONvallis nulla neque libero cONvallis"),
 ("12:01", "2015-03-24", "ultrices phasellus id sapien in"),
-("Dandelion", "2017-08-31", "at vulputate vitae nisl aenean"),
-("Easy Virtue", "2020-06-29", "donec dapibus duis at velit"),
-("Scotland, Pa.", "2019-03-03", "dolor quis odio consequat varius"),
+("DandeliON", "2017-08-31", "at vulputate vitae nisl aenean"),
+("Easy Virtue", "2020-06-29", "dONec dapibus duis at velit"),
+("Scotland, Pa.", "2019-03-03", "dolor quis odio cONsequat varius"),
 ("Return of the Secaucus 7", "2018-11-15", "justo in blandit ultrices enim"),
-("Confetti", "2020-05-29", "turpis donec posuere metus vitae"),
+("CONfetti", "2020-05-29", "turpis dONec posuere metus vitae"),
 ("Witchboard", "2018-04-17", "orci luctus et ultrices posuere"),
 ("Maidentrip", "2015-08-09", "est lacinia nisi venenatis tristique"),
 ("Intruder, The (Lintrus)", "2016-10-22", "euismod scelerisque quam turpis adipiscing"),
-("Att stjäla en tjuv", "2019-08-20", "libero ut massa volutpat convallis"),
-("Braddock: Missing in Action III", "2016-04-04", "blandit non interdum in ante"),
-("Murder Over New York", "2016-11-12", "sapien varius ut blandit non"),
+("Att stjäla en tjuv", "2019-08-20", "libero ut massa volutpat cONvallis"),
+("Braddock: Missing in ActiON III", "2016-04-04", "blandit nON interdum in ante"),
+("Murder Over New York", "2016-11-12", "sapien varius ut blandit nON"),
 ("Voices", "2018-08-24", "enim sit amet nunc viverra"),
 ("Duel in the Sun", "2015-11-09", "volutpat sapien arcu sed augue"),
-("Hot Shots! Part Deux", "2014-01-08", "volutpat in congue etiam justo"),
+("Hot Shots! Part Deux", "2014-01-08", "volutpat in cONgue etiam justo"),
 ("Man of the East", "2017-09-22", "augue vestibulum rutrum rutrum neque"),
 ("Symmetry (Symetria)", "2014-01-09", "auctor gravida sem praesent id"),
-("Secret Glory, The", "2015-12-01", "nulla neque libero convallis eget"),
+("Secret Glory, The", "2015-12-01", "nulla neque libero cONvallis eget"),
 ("Who Killed Bambi? (Qui a tué Bambi?)", "2015-07-11", "pellentesque at nulla suspendisse potenti"),
 ("Grease", "2015-01-04", "proin at turpis a pede"),
 ("Special 26", "2020-06-22", "neque aenean auctor gravida sem"),
-("And God Created Woman", "2015-07-07", "lectus pellentesque at nulla suspendisse"),
+("And God CREATEd Woman", "2015-07-07", "lectus pellentesque at nulla suspendisse"),
 ("Snow Cake", "2015-03-20", "integer ac neque duis bibendum"),
 ("Shutter Island", "2018-04-27", "nibh quisque id justo sit"),
 ("Tür, Die (Door, The)", "2016-06-30", "potenti in eleifend quam a"),
 ("Lourdes", "2018-04-29", "etiam pretium iaculis justo in"),
-("David Cross: Bigger & Blackerer", "2014-11-02", "sapien non mi integer ac"),
+("David Cross: Bigger & Blackerer", "2014-11-02", "sapien nON mi integer ac"),
 ("Caliber 9", "2019-10-02", "faucibus orci luctus et ultrices"),
 ("Hero", "2016-09-26", "et ultrices posuere cubilia curae"),
 ("Extraterrestrial", "2015-11-07", "tortor id nulla ultrices aliquet"),
-("Tinker Tailor Soldier Spy", "2020-03-06", "consectetuer adipiscing elit proin interdum"),
+("Tinker Tailor Soldier Spy", "2020-03-06", "cONsectetuer adipiscing elit proin interdum"),
 ("Yanks", "2016-11-08", "nam nulla integer pede justo"),
 ("Fall", "2014-03-25", "sapien cursus vestibulum proin eu"),
 ("Sweet Land", "2018-03-05", "amet turpis elementum ligula vehicula"),
 ("When in Rome", "2015-06-18", "morbi quis tortor id nulla"),
 ("Rimini, Rimini: A Year Later", "2016-02-21", "tempus vivamus in felis eu"),
-("Earth to Echo", "2015-06-05", "convallis nunc proin at turpis"),
+("Earth to Echo", "2015-06-05", "cONvallis nunc proin at turpis"),
 ("Out for Justice", "2016-10-20", "quisque arcu libero rutrum ac"),
 ("Vie en Rose, La (Môme, La)", "2017-01-13", "in lectus pellentesque at nulla"),
 ("Lady Vanishes, The", "2016-11-12", "in purus eu magna vulputate"),
 ("Metropolis", "2018-04-23", "leo maecenas pulvinar lobortis est"),
 ("Heaven Help Us", "2017-10-24", "sed interdum venenatis turpis enim"),
-("Woman In Berlin, A (Anonyma - Eine Frau in Berlin)", "2016-04-01", "morbi vel lectus in quam"),
-("Quiet as a Mouse (Muxmäuschenstill)", "2014-10-21", "eros viverra eget congue eget"),
-("At Close Range", "2014-12-05", "ac consequat metus sapien ut"),
+("Woman In Berlin, A (AnONyma - Eine Frau in Berlin)", "2016-04-01", "morbi vel lectus in quam"),
+("Quiet as a Mouse (Muxmäuschenstill)", "2014-10-21", "eros viverra eget cONgue eget"),
+("At Close Range", "2014-12-05", "ac cONsequat metus sapien ut"),
 ("Family Tree", "2017-11-10", "quis augue luctus tincidunt nulla"),
 ("Prince Avalanche", "2019-03-01", "vestibulum ante ipsum primis in"),
 ("Citadel", "2019-04-23", "id pretium iaculis diam erat"),
@@ -150,49 +150,49 @@ VALUES
 ("Rent", "2019-02-28", "eros elementum pellentesque quisque porta"),
 ("Children of the Corn IV: The Gathering", "2015-06-12", "ac neque duis bibendum morbi"),
 ("Morning Patrol (Proini peripolos)", "2018-02-05", "sociis natoque penatibus et magnis"),
-("Monster Club, The", "2014-10-15", "sem fusce consequat nulla nisl"),
-("Liberty Heights", "2018-12-14", "velit eu est congue elementum"),
-("Minority Report", "2020-04-23", "non pretium quis lectus suspendisse"),
+("MONster Club, The", "2014-10-15", "sem fusce cONsequat nulla nisl"),
+("Liberty Heights", "2018-12-14", "velit eu est cONgue elementum"),
+("Minority Report", "2020-04-23", "nON pretium quis lectus suspendisse"),
 ("Jurassic Park III", "2016-10-13", "mus etiam vel augue vestibulum"),
 ("Normal", "2018-01-24", "vel nulla eget eros elementum"),
 ("The Beaver Trilogy", "2015-06-21", "nisl ut volutpat sapien arcu"),
 ("Double Trouble", "2020-08-18", "tempus vivamus in felis eu"),
-("Ascension", "2018-01-23", "semper interdum mauris ullamcorper purus"),
+("AscensiON", "2018-01-23", "semper interdum mauris ullamcorper purus"),
 ("Climb, The", "2017-11-05", "sed vel enim sit amet"),
-("Nothing in Common", "2015-09-04", "rutrum ac lobortis vel dapibus"),
+("Nothing in CommON", "2015-09-04", "rutrum ac lobortis vel dapibus"),
 ("Watercolors", "2017-08-28", "elit sodales scelerisque mauris sit"),
 ("Brother 2 (Brat 2)", "2017-04-10", "diam vitae quam suspendisse potenti"),
-("Nothing Personal", "2020-06-05", "id nulla ultrices aliquet maecenas"),
+("Nothing PersONal", "2020-06-05", "id nulla ultrices aliquet maecenas"),
 ("Kids of Survival", "2016-05-22", "ante vel ipsum praesent blandit"),
 ("Panic", "2017-04-23", "erat tortor sollicitudin mi sit"),
 ("Brooklyn Bridge", "2018-01-18", "ornare imperdiet sapien urna pretium"),
-("Once Were Warriors", "2017-09-12", "tincidunt nulla mollis molestie lorem"),
+("ONce Were Warriors", "2017-09-12", "tincidunt nulla mollis molestie lorem"),
 ("They All Laughed", "2017-04-20", "id luctus nec molestie sed"),
-("Boondock Saints, The", "2019-06-13", "condimentum id luctus nec molestie"),
+("BoONdock Saints, The", "2019-06-13", "cONdimentum id luctus nec molestie"),
 ("Fun is Beautiful", "2015-07-25", "pellentesque quisque porta volutpat erat"),
 ("Fatso", "2020-04-23", "sed augue aliquam erat volutpat"),
 ("Society", "2017-09-24", "in tempus sit amet sem"),
-("Locked Out (Enfermés dehors)", "2014-07-29", "eget nunc donec quis orci"),
+("Locked Out (Enfermés dehors)", "2014-07-29", "eget nunc dONec quis orci"),
 ("Italian, The (Italianetz)", "2015-11-18", "nulla nisl nunc nisl duis"),
 ("El Dorado", "2020-10-26", "ante ipsum primis in faucibus"),
 ("Henry Fool", "2020-10-08", "in leo maecenas pulvinar lobortis"),
 ("King of Texas", "2020-01-08", "habitasse platea dictumst etiam faucibus"),
-("Aint in It for My Health: A Film About Levon Helm", "2017-03-07", "proin risus praesent lectus vestibulum"),
-("D.O.A.", "2016-05-03", "dapibus dolor vel est donec"),
+("Aint in It for My Health: A Film About LevON Helm", "2017-03-07", "proin risus praesent lectus vestibulum"),
+("D.O.A.", "2016-05-03", "dapibus dolor vel est dONec"),
 ("Dadetown", "2017-03-07", "morbi quis tortor id nulla"),
 ("First Family", "2018-06-02", "enim sit amet nunc viverra"),
-("Red Chapel (Røde kapel)", "2016-08-26", "eros viverra eget congue eget"),
+("Red Chapel (Røde kapel)", "2016-08-26", "eros viverra eget cONgue eget"),
 ("White Palms (Fehér tenyér)", "2018-01-30", "platea dictumst aliquam augue quam"),
 ("Ragamuffin", "2019-02-17", "quam sapien varius ut blandit"),
-("Whatever Lola Wants", "2016-08-18", "maecenas rhoncus aliquam lacus morbi"),
-("Picnic at Hanging Rock", "2015-01-30", "integer non velit donec diam"),
-("Fährmann Maria", "2019-01-17", "maecenas rhoncus aliquam lacus morbi"),
-("Outfoxed: Rupert Murdochs War on Journalism", "2015-10-04", "eget eros elementum pellentesque quisque"),
+("Whatever Lola Wants", "2016-08-18", "maecenas rhONcus aliquam lacus morbi"),
+("Picnic at Hanging Rock", "2015-01-30", "integer nON velit dONec diam"),
+("Fährmann Maria", "2019-01-17", "maecenas rhONcus aliquam lacus morbi"),
+("Outfoxed: Rupert Murdochs War ON Journalism", "2015-10-04", "eget eros elementum pellentesque quisque"),
 ("Women, The", "2016-06-10", "posuere cubilia curae duis faucibus"),
 ("Ip Man", "2018-03-01", "blandit ultrices enim lorem ipsum"),
 ("Codependent Lesbian Space Alien Seeks Same", "2015-08-25", "pellentesque at nulla suspendisse potenti"),
-("Yellow Sea, The (a.k.a. The Murderer) (Hwanghae)", "2020-03-14", "accumsan odio curabitur convallis duis"),
-("Long Dark Hall, The", "2015-06-05", "quam a odio in hac");
+("Yellow Sea, The (a.k.a. The Murderer) (Hwanghae)", "2020-03-14", "accumsan odio curabitur cONvallis duis"),
+("LONg Dark Hall, The", "2015-06-05", "quam a odio in hac");
 
 CREATE TABLE movie_genre(
 movie_genre_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -232,7 +232,7 @@ VALUES
 ('Lane', 'Climer', '1991-06-21', 'Poland', '2016-12-18'),
 ('Bride', 'Mearing', '1990-08-22', 'USA', '2012-04-24'),
 ('Ivar', 'Sampey', '1982-06-27', 'Cuba', '2019-04-07'),
-('Fonzie', 'Rewcassell', '1987-03-24', 'Brazil', '2011-03-09'),
+('FONzie', 'Rewcassell', '1987-03-24', 'Brazil', '2011-03-09'),
 ('Aloise', 'Croix', '1984-05-05', 'UK', '2017-12-24'),
 ('Calhoun', 'Dowsing', '1999-07-21', 'Isle of Man', '2012-11-18'),
 ('Saudra', 'Sambiedge', '1990-07-15', 'Peru', '2012-08-25'),
@@ -240,15 +240,15 @@ VALUES
 ('Dewitt', 'Spillman', '1996-12-11', 'Peru', '2013-01-05'),
 ('Clive', 'Wase', '1987-09-01', 'Argentina', '2011-11-19'),
 ('Cahra', 'Vernham', '1993-02-12', 'Brazil', '2011-12-10'),
-('Tandy', 'Temperton', '1983-05-05', 'Colombia', '2010-11-16'),
+('Tandy', 'TempertON', '1983-05-05', 'Colombia', '2010-11-16'),
 ('Nataline', 'Asch', '1999-10-17', 'Jamaica', '2019-05-05'),
 ('Sully', 'Immins', '1994-06-30', 'Guatemala', '2011-07-20'),
 ('Sisely', 'Geraldo', '1989-04-10', 'Brazil', '2018-04-02'),
 ('Inna', 'Hulse', '1984-01-13', 'France', '2013-06-17'),
-('Ursa', 'Issacson', '1990-05-03', 'Russia', '2011-01-02'),
+('Ursa', 'IssacsON', '1990-05-03', 'Russia', '2011-01-02'),
 ('Rick', 'Denham', '1987-03-04', 'Vietnam', '2019-08-18'),
 ('Emlynne', 'Semered', '1985-08-07', 'Russia', '2019-11-16'),
-('Rochella', 'Slowley', '1999-06-15', 'Indonesia', '2018-05-27'),
+('Rochella', 'Slowley', '1999-06-15', 'IndONesia', '2018-05-27'),
 ('Dorri', 'Peel', '1985-10-05', 'Czech Republic', '2010-01-04'),
 ('Sol', 'Zuenelli', '1981-04-04', 'Ghana', '2017-01-12'),
 ('Anders', 'Fooks', '1984-03-09', 'Tunisia', '2010-11-09'),
@@ -256,7 +256,7 @@ VALUES
 ('Arlen', 'de Mendoza', '1983-03-28', 'UK', '2019-09-24'),
 ('Babbie', 'Doddrell', '1982-06-27', 'Philippines', '2012-07-30'),
 ('Jeanna', 'Prose', '1981-10-04', 'Ethiopia', '2017-07-11'),
-('Isiahi', 'Priddle', '1981-05-13', 'Indonesia', '2016-03-08'),
+('Isiahi', 'Priddle', '1981-05-13', 'IndONesia', '2016-03-08'),
 ('Michelle', 'Dulanty', '1991-10-12', 'Albania', '2017-05-20'),
 ('Alastair', 'Pitts', '1984-02-12', 'Poland', '2019-08-19'),
 ('Bobbette', 'Kures', '1992-06-03', 'UK', '2014-01-21'),
@@ -265,7 +265,7 @@ VALUES
 ('Dianne', 'Ruddin', '1985-03-30', 'USA', '2016-06-28'),
 ('Suellen', 'Eyam', '1986-03-23', 'Syria', '2013-06-16'),
 ('Glad', 'Patience', '1991-01-22', 'USA', '2016-01-14'),
-('Antoinette', 'Wrangle', '1981-09-01', 'Indonesia', '2019-10-11'),
+('Antoinette', 'Wrangle', '1981-09-01', 'IndONesia', '2019-10-11'),
 ('Kathie', 'Kensy', '1982-12-17', 'USA', '2019-10-03'),
 ('Blithe', 'Hebbs', '1999-02-13', 'USA', '2015-02-04');
 
@@ -317,18 +317,18 @@ VALUES
 ('Chalmers', 'Bignell', '1975-02-06', 'Brazil', '2019-04-04'),
 ('Worth', 'Haining', '1979-07-14', 'Russia', '2014-05-07'),
 ('Osbourne', 'Sandwich', '1988-08-05', 'Russia', '2012-03-20'),
-('Melonie', 'Boseley', '1969-03-08', 'Serbia', '2011-06-09'),
+('MelONie', 'Boseley', '1969-03-08', 'Serbia', '2011-06-09'),
 ('Isidor', 'Clayworth', '1966-02-12', 'Peru', '2010-10-23'),
 ('Davida', 'Upham', '1987-04-29', 'China', '2011-11-24'),
 ('Rudiger', 'Chimes', '1968-01-20', 'Portugal', '2016-11-14'),
-('Courtney', 'Sheraton', '1974-07-19', 'Luxembourg', '2013-07-14'),
+('Courtney', 'SheratON', '1974-07-19', 'Luxembourg', '2013-07-14'),
 ('Agna', 'Drache', '1971-04-29', 'Greece', '2018-03-31'),
 ('Sara', 'Gunbie', '1973-02-18', 'Portugal', '2015-02-22'),
 ('Jo-ann', 'Swinglehurst', '1970-08-26', 'Tanzania', '2011-07-30'),
 ('Gladys', 'Izat', '1960-10-03', 'Yemen', '2012-06-18'),
 ('Windy', 'Devericks', '1980-11-23', 'Oman', '2019-01-30'),
 ('Rhys', 'Scase', '1966-12-24', 'Poland', '2018-05-01'),
-('George', 'Cleminson', '1977-03-16', 'Russia', '2010-05-07'),
+('George', 'CleminsON', '1977-03-16', 'Russia', '2010-05-07'),
 ('Obediah', 'Cane', '1968-10-12', 'Malaysia', '2016-06-15'),
 ('Nicki', 'Sheffield', '1983-08-22', 'China', '2012-06-26'),
 ('Lay', 'Josling', '1982-12-28', 'Portugal', '2012-05-09'),
@@ -338,7 +338,7 @@ VALUES
 ('Merla', 'Peltz', '1982-04-25', 'Pakistan', '2011-04-17'),
 ('Edgar', 'Minshall', '1983-03-06', 'Colombia', '2014-07-01'),
 ('Chandler', 'Tweedell', '1983-06-02', 'Serbia', '2019-12-12'),
-('Evaleen', 'Osmond', '1974-04-05', 'Macedonia', '2017-10-05');
+('Evaleen', 'OsmONd', '1974-04-05', 'MacedONia', '2017-10-05');
 
 CREATE TABLE movie_director (
 movie_director_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -416,16 +416,335 @@ VALUES
 (101, 2, '2020-05-11', '2020-07-16'),
 (102, 3, '2020-03-09', '2020-07-10');
 
-
 INSERT INTO rental (user_id, movie_id, borrowed_date, due_date) 
 VALUES
 (101, 3, CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 1 MONTH));
 
-SELECT * 
-    FROM movie
-    WHERE movie.movie_id NOT IN (
-        SELECT m.movie_id
-        FROM movie m
-        JOIN rental r 
-        ON m.movie_id = r.movie_id
-        WHERE user_id = 101 )
+DROP PROCEDURE IF EXISTS getUserRentalCount;
+DELIMITER //
+CREATE PROCEDURE getUserRentalCount(IN in_user_id INT)
+BEGIN
+	SELECT COUNT(*) as "rentals_due"
+		FROM rental
+		JOIN user
+		ON rental.user_id = user.user_id
+		WHERE rental.due_date >= CURDATE();
+END //
+DELIMITER ;
+CALL getUserRentalCount(100);
+
+DROP PROCEDURE IF EXISTS getDueDate;
+DELIMITER $$
+CREATE PROCEDURE getDueDate (
+	IN  in_user_id INT,
+	IN in_movie_id INT,
+	OUT out_due_date DATE
+)
+BEGIN
+	SELECT due_date
+	INTO out_due_date
+	FROM rental
+	WHERE user_id = in_user_id
+    AND movie_id = in_movie_id;
+END$$
+DELIMITER ;
+
+CALL getDueDate(101, 2, @out_due_date);
+SELECT @out_due_date;
+
+DROP PROCEDURE IF EXISTS getMovieGenre;
+DELIMITER $$
+CREATE PROCEDURE getMovieGenre (
+	IN  in_movie_id INT,
+	OUT out_genre VARCHAR(100)
+)
+BEGIN
+	SELECT genre.genre_name
+    INTO out_genre
+	FROM movie
+	JOIN movie_genre
+	ON movie.movie_id = movie_genre.movie_id
+	JOIN genre
+	ON movie_genre.genre_id = genre.genre_id
+	WHERE movie.movie_id = in_movie_id;
+END$$
+DELIMITER ;
+
+CALL getMovieGenre(1, @out_genre);
+SELECT @out_genre;
+
+DROP PROCEDURE IF EXISTS getMovieRating;
+DELIMITER $$
+CREATE PROCEDURE getMovieRating (
+	IN  in_movie_id INT,
+	OUT out_rating VARCHAR(100)
+)
+BEGIN
+	SELECT ratings.rating_name
+	INTO out_rating
+	FROM movie
+	JOIN movie_ratings
+	ON movie.movie_id = movie_ratings.movie_id
+	JOIN ratings
+	ON movie_ratings.rating_id = ratings.rating_id
+	WHERE movie.movie_id = in_movie_id;
+END$$
+DELIMITER ;
+
+CALL getMovieRating(2, @out_rating);
+SELECT @out_rating;
+
+DROP TABLE IF EXISTS db_count;
+CREATE Table db_count (
+	actor_count int,
+    director_count int,
+    movie_count int,
+    persON_count int
+);
+
+INSERT INTO db_count(actor_count, director_count, movie_count, persON_count) 
+values (40,27,100,5);
+
+#Actor
+DROP TRIGGER IF EXISTS actor_count_insert;
+CREATE TRIGGER actor_count_insert 
+    AFTER INSERT ON actor
+    FOR EACH ROW 
+ UPDATE db_count
+ SET actor_count = actor_count + 1  WHERE actor_count = actor_count;
+ 
+INSERT INTO actor (actor_first_name, actor_last_name, actor_born_date, actor_born_country) 
+values ("Jay", "Patel", "1999-02-16", "Canada");
+
+DROP TRIGGER IF EXISTS actor_count_delete;
+CREATE TRIGGER actor_count_delete 
+    AFTER DELETE ON actor
+    FOR EACH ROW 
+ UPDATE db_count
+ SET actor_count = actor_count - 1  WHERE actor_count = actor_count;
+
+SELECT * FROM db_count;
+DELETE FROM actor WHERE actor_id = 53;
+
+#Director
+DROP TRIGGER IF EXISTS director_count_insert;
+CREATE TRIGGER director_count_insert 
+    AFTER INSERT ON director
+    FOR EACH ROW 
+ UPDATE db_count
+ SET director_count = director_count + 1  WHERE director_count = director_count;
+ 
+SELECT * FROM db_count;
+SELECT * FROM director;
+INSERT INTO director (director_first_name, director_last_name, director_born_date, director_born_country) 
+values ("Jay", "Patel", "1999-02-16", "Canada");
+
+DROP TRIGGER IF EXISTS director_count_delete;
+CREATE TRIGGER director_count_delete 
+    AFTER DELETE ON director
+    FOR EACH ROW 
+ UPDATE db_count
+ SET director_count = director_count - 1  WHERE director_count = director_count;
+
+SELECT * FROM db_count;
+DELETE FROM director WHERE director_id = 31;
+
+#Movie
+DROP TRIGGER IF EXISTS movie_count_insert;
+CREATE TRIGGER movie_count_insert 
+    AFTER INSERT ON movie
+    FOR EACH ROW 
+ UPDATE db_count
+ SET movie_count = movie_count + 1  WHERE movie_count = movie_count;
+
+INSERT INTO movie (movie_title, movie_release_date, movie_details) 
+values ("Elf", "2010-11-30", "A Christmas movie");
+
+DROP TRIGGER IF EXISTS movie_count_delete;
+CREATE TRIGGER movie_count_delete 
+    AFTER DELETE ON movie
+    FOR EACH ROW 
+ UPDATE db_count
+ SET movie_count = movie_count - 1  WHERE movie_count = movie_count;
+
+DELETE FROM movie WHERE movie_id = 101;
+
+#PersON
+DROP TRIGGER IF EXISTS persON_count_insert;
+CREATE TRIGGER persON_count_insert 
+    AFTER INSERT ON persON
+    FOR EACH ROW 
+ UPDATE db_count
+ SET persON_count = persON_count + 1  WHERE persON_count = persON_count;
+
+INSERT INTO persON 
+(username, user_pass, first_name, last_name, birthdate, street, city, state, zip, phONe, email, data_joined)
+ values ("jpate118", "P@ssw0rd", "Jay", "Patel", "1999-02-16", "University City Blvd", "Charlotte", "NC", "28027","1111111111", "jpate118@uncc.edu", "2020-12-15");
+
+DROP TRIGGER IF EXISTS persON_count_delete;
+CREATE TRIGGER persON_count_delete 
+    AFTER DELETE ON persON
+    FOR EACH ROW 
+ UPDATE db_count
+ SET persON_count = persON_count - 1  WHERE persON_count = persON_count;
+
+SELECT * FROM db_count;
+DELETE FROM persON WHERE persON_id = 9;
+
+CREATE VIEW usa_actors
+AS
+SELECT
+    actor_id,
+	actor_first_name,
+	actor_last_name,
+	actor_born_date,
+	actor_death_date
+FROM
+    actor
+WHERE
+    actor_born_country ="USA";
+
+CREATE VIEW best_movie_ratings
+AS
+SELECT
+    movie.movie_id,
+    movie.movie_title,
+	movie_ratings.rating_id
+FROM
+    movie
+JOIN
+    movie_ratings
+WHERE
+    movie.movie_id = movie_ratings.movie_id AND movie_ratings.rating_id = 3
+GROUP BY movie.movie_title;
+
+CREATE VIEW movies_directed_by_chandler_tweedell
+AS
+SELECT
+    movie.movie_id,
+	movie.movie_title,
+	movie_director.director_id,
+	director.director_first_name,
+	director.director_last_name
+FROM
+    movie
+JOIN
+    movie_director
+ON
+    movie.movie_id = movie_director.movie_id
+JOIN
+    director
+ON
+    movie_director.director_id = director.director_id
+WHERE
+    movie.movie_id = movie_director.movie_id  AND director.director_id = 29
+GROUP BY movie.movie_title;
+
+CREATE VIEW movies_directed_by_Lay_Josling
+AS
+SELECT
+    movie.movie_id,
+	movie.movie_title,
+	movie_director.director_id,
+	director.director_first_name,
+	director.director_last_name
+FROM
+    movie
+JOIN
+    movie_director
+ON
+    movie.movie_id = movie_director.movie_id
+JOIN
+    director
+ON
+    movie_director.director_id = director.director_id
+WHERE
+    movie.movie_id = movie_director.movie_id  AND director.director_id = 23
+GROUP BY movie.movie_title;
+
+CREATE TABLE rental_history (
+    id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    rental_count INT,
+	movie_id INT,
+	updated_at DATETIME NOT NULL,
+   FOREIGN KEY (movie_id) REFERENCES rental(movie_id)   
+);
+
+DELIMITER $$
+CREATE EVENT IF NOT EXISTS rental_copmputatiON
+ON SCHEDULE AT CURRENT_TIMESTAMP
+DO BEGIN
+ INSERT INTO rental_history(rental_count,movie_id,updated_at )
+ Select (count(movie_id),movie_id,NOW()) FROM rental
+ where movie_id=rental.movie_id;
+END$$
+DELIMITER ;
+
+CREATE INDEX persON_INDEX ON persON(first_name);
+SHOW INDEX FROM movie_ratings;
+
+CREATE INDEX persON_INDEX_id ON persON(persON_id);
+SHOW INDEX FROM movie_ratings;
+
+CREATE INDEX user_INDEX_id ON user(user_id,persON_id);
+SHOW INDEX FROM user;
+
+CREATE INDEX user_INDEX ON user(user_id);
+SHOW INDEX FROM user;
+
+CREATE INDEX admin_table_INDEX ON admin(persON_id);
+SHOW INDEX FROM admin;
+
+CREATE INDEX genre_table_INDEX ON genre(genre_name);
+SHOW INDEX FROM genre;
+
+CREATE INDEX movie_INDEX ON movie(movie_title);
+SHOW INDEX FROM movie;
+
+CREATE INDEX movie_INDEX_id ON movie(movie_id, movie_title);
+SHOW INDEX FROM movie;
+
+CREATE INDEX movie_genre_INDEX ON movie_genre(genre_id);
+SHOW INDEX FROM movie_genre;
+
+CREATE INDEX movie_genre_INDEX_id ON movie_genre(movie_genre_id);
+SHOW INDEX FROM movie_genre;
+
+CREATE INDEX actor_table_INDEX ON actor(actor_first_name, actor_last_name);
+SHOW INDEX FROM actor;
+
+CREATE INDEX actor_table_INDEX_id ON actor(actor_id);
+SHOW INDEX FROM actor;
+
+CREATE INDEX movie_actor_INDEX ON movie_actor(movie_actor_id, actor_id);
+SHOW INDEX FROM movie_actor;
+
+CREATE INDEX movie_actor_INDEX_id ON movie_actor(movie_actor_id);
+SHOW INDEX FROM movie_actor;
+
+CREATE INDEX director_table_INDEX ON director(director_first_name,director_last_name,director_id);
+SHOW INDEX FROM director;
+
+CREATE INDEX director_table_INDEX_id ON director(director_id);
+SHOW INDEX FROM director;
+
+CREATE INDEX movie_director_INDEX ON movie_director(movie_id,director_id);
+SHOW INDEX FROM movie_director;
+
+CREATE INDEX movie_director_INDEX_id ON movie_director(movie_director_id);
+SHOW INDEX FROM movie_director;
+
+CREATE INDEX ratings_INDEX ON ratings(rating_name);
+SHOW INDEX FROM ratings;
+
+CREATE INDEX movie_ratings_INDEX ON movie_ratings(rating_id);
+SHOW INDEX FROM movie_ratings;
+
+CREATE INDEX movie_ratings_INDEX_id ON movie_ratings(movie_ratings_id);
+SHOW INDEX FROM movie_ratings;
+
+CREATE INDEX rental_INDEX ON rental(rental_id,movie_id);
+SHOW INDEX FROM ratings;
+
+CREATE INDEX rental_INDEX_id ON rental(rental_id);
+SHOW INDEX FROM ratings;
